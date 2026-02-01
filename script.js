@@ -108,3 +108,59 @@ if (scrollTopBtn) {
         });
     });
 }
+
+// Auto-Generate Table of Contents
+const tocContainer = document.getElementById('toc-container');
+const blogContent = document.querySelector('.blog-content');
+
+if (tocContainer && blogContent) {
+    const headings = blogContent.querySelectorAll('h2, h3');
+    
+    if (headings.length > 0) {
+        const tocList = document.createElement('ul');
+        
+        headings.forEach((heading, index) => {
+            const id = heading.id || `heading-${index}`;
+            heading.id = id;
+
+            const listItem = document.createElement('li');
+            const link = document.createElement('a');
+            link.href = `#${id}`;
+            link.textContent = heading.textContent;
+            
+            if (heading.tagName === 'H3') {
+                listItem.style.marginLeft = '20px'; // Indent H3
+                link.style.fontSize = '0.9em';
+            }
+
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                // Smooth scroll with offset
+                const offset = 100;
+                const bodyRect = document.body.getBoundingClientRect().top;
+                const elementRect = heading.getBoundingClientRect().top;
+                const elementPosition = elementRect - bodyRect;
+                const offsetPosition = elementPosition - offset;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+            });
+
+            listItem.appendChild(link);
+            tocList.appendChild(listItem);
+        });
+
+        const summary = document.createElement('summary');
+        summary.textContent = 'Table of Contents (Klik untuk Buka/Tutup)';
+        
+        // Clear existing content if any (e.g. hardcoded)
+        tocContainer.innerHTML = '';
+        tocContainer.appendChild(summary);
+        tocContainer.appendChild(tocList);
+        
+        // Open by default
+        tocContainer.setAttribute('open', '');
+    }
+}
