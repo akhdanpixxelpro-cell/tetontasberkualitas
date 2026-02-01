@@ -250,6 +250,8 @@ img {
 .hero-btns {
     display: flex;
     gap: 20px;
+    flex-wrap: wrap;
+    align-items: center;
 }
 
 .hero-image-wrapper {
@@ -1092,20 +1094,25 @@ img {
     }
 
     .hero-title {
-        font-size: 2.8rem;
-        margin-bottom: 15px;
-        /* Reduce margin */
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+        line-height: 1.2;
+    }
+
+    .hero-image-wrapper {
+        margin-top: 40px;
     }
 
     .hero-subtitle {
         font-size: 1rem;
+        margin-bottom: 10px;
     }
 
     .hero-description {
-        font-size: 0.9rem;
-        margin-bottom: 25px;
+        font-size: 1rem;
+        margin-bottom: 30px;
         padding: 0 10px;
-        /* Improve readability */
+        line-height: 1.6;
     }
 
     .section-title {
@@ -1118,11 +1125,14 @@ img {
     }
 
     .circle-bg {
-        width: 260px;
-        height: 260px;
-        border-width: 15px;
-        max-width: 80vw;
-        max-height: 80vw;
+        width: 280px;
+        height: 280px;
+        border-width: 20px;
+        max-width: 90vw;
+        max-height: 90vw;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
     }
 
     .backpack-image-placeholder {
@@ -1168,6 +1178,17 @@ img {
 
     .nav-menu.active {
         left: 0;
+    }
+
+    .hero-btns {
+        flex-direction: column;
+        width: 100%;
+        gap: 15px;
+    }
+
+    .hero-btns .btn {
+        width: 100%;
+        justify-content: center;
     }
 }
 
